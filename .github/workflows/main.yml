@@ -1,0 +1,29 @@
+name: Build and Run Docker
+
+on:
+  push:
+    branches:
+      - main  
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.10
+
+    - name: Create GCP credentials file
+      run: |
+        echo '${{ secrets.GCP_KEY_JSON }}' > gcp_key.json
+
+    - name: Build Docker image
+      run: docker build -t stock-sentiment-tracker .
+
+    - name: Run Docker container
+      run: docker run -e GOOGLE_APPLICATION_CREDENTIALS='/app/gcp_key.json' stock-sentiment-tracker
