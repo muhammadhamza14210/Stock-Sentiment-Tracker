@@ -20,6 +20,12 @@ def upload_csv_to_bigquery(csv_path, table_name, dataset_id="stock_dataset", pro
 
     # Table reference
     table_ref = dataset_ref.table(table_name)
+    
+    # Job config with overwrite & autodetect
+    job_config = bigquery.LoadJobConfig(
+        write_disposition=bigquery.WriteDisposition.WRITE_TRUNCATE,  # Overwrite
+        autodetect=True,                                             
+    )
 
     # Upload to BigQuery
     print(f"Uploading {csv_path} to {project_id}.{dataset_id}.{table_name}...")
