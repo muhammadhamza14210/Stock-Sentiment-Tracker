@@ -5,4 +5,3 @@ __pycache__
 *.pyd
 *.sqlite3
 *.log
-.gcp_key.json
