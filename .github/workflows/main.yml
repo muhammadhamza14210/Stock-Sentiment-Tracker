@@ -22,6 +22,11 @@ jobs:
       run: |
         echo '${{ secrets.GCP_KEY_JSON }}' > gcp_key.json
 
+    - name: Echo NewsAPI key (sanity check)
+      run: |
+        echo "NewsAPI Key is ${{ secrets.NEWS_API }}"
+
+
     - name: Build Docker image
       run: docker build -t stock-sentiment-tracker .
 
