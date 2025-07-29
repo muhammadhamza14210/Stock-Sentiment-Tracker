@@ -26,4 +26,9 @@ jobs:
       run: docker build -t stock-sentiment-tracker .
 
     - name: Run Docker container
-      run: docker run -e GOOGLE_APPLICATION_CREDENTIALS='/app/gcp_key.json' stock-sentiment-tracker
+      run: |
+        docker run \
+          -e GOOGLE_APPLICATION_CREDENTIALS='/app/gcp_key.json' \
+          -e NEWS_API_KEY='${{ secrets.NEWS_API }}' \
+          stock-sentiment-tracker
+
