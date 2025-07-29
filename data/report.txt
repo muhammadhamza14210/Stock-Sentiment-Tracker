@@ -1,10 +1,10 @@
 ────────────── Summary ──────────────
-Report Generated at: 2025-07-28T11:27:55.330454+00:00
-Tickers Processed: 23
-Total Articles Collected: 139
+Report Generated at: 2025-07-29T11:22:46.271333+00:00
+Tickers Processed: 84
+Total Articles Collected: 1191
 
 ────────────── Insights ─────────────
 
-Top Bullish Ticker: NVDA (avg: 0.706)
-Top Bearish Ticker: TSLA (avg: 0.356)
+Top Bullish Ticker: GOOGL (avg: 0.811)
+Top Bearish Ticker: COP (avg: -0.145)
 Most Mentioned Ticker: AAPL (20 articles)

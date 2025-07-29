@@ -7,7 +7,7 @@ from datetime import datetime
 load_dotenv()
 NEWS_KEY = os.getenv("NEWS_API")
 
-def fetch_news_articles(ticker, page_size=20):
+def fetch_news_articles(ticker, page_size=20, skip_if_empty=True):
     url = (
         f"https://newsapi.org/v2/everything?"
         f"q={ticker}&language=en&sortBy=publishedAt&pageSize={page_size}&apiKey={NEWS_KEY}"
@@ -22,6 +22,10 @@ def fetch_news_articles(ticker, page_size=20):
         return []
 
     articles = data.get("articles", [])
+    if skip_if_empty and not articles:
+        print(f"No articles found for {ticker}, skipping.")
+        return None
+
     rows = []
 
     for article in articles:

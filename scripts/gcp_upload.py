@@ -29,7 +29,7 @@ def upload_csv_to_bigquery(csv_path, table_name, dataset_id="stock_dataset", pro
 
     # Upload to BigQuery
     print(f"Uploading {csv_path} to {project_id}.{dataset_id}.{table_name}...")
-    job = client.load_table_from_dataframe(df, table_ref)
+    job = client.load_table_from_dataframe(df, table_ref, job_config=job_config)
     job.result()
 
     print(f"Uploaded {len(df)} rows to {table_name}")
