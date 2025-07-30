@@ -1,15 +1,13 @@
-name: Safe 30-Hour Interval Run
+name: Build and Run Docker
 
 on:
-  schedule:
-    - cron: "0 */6 * * *"  # Every 6 hours (UTC)
   push:
     branches:
       - main
 
 jobs:
-  run-safe:
-    runs-on: ubuntu-latest
+  build-and-run:
+    runs-on: ubuntu-22.04 
 
     steps:
     - name: Checkout code
@@ -18,45 +16,24 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: 3.10
+        python-version: 3.10.13 
 
     - name: Create GCP credentials file
-      run: echo '${{ secrets.GCP_KEY_JSON }}' > gcp_key.json
-
-    - name: Load last run timestamp and decide
-      id: check_run
       run: |
-        FILE=last_run.txt
-        NOW=$(date +%s)
-        GAP=108000  # 30 hours in seconds
+        echo '${{ secrets.GCP_KEY_JSON }}' > gcp_key.json
 
-        if [ -f "$FILE" ]; then
-          LAST_RUN=$(cat $FILE)
-          DIFF=$((NOW - LAST_RUN))
-          echo "🕒 Last run was $((DIFF/3600)) hours ago."
-
-          if [ $DIFF -lt $GAP ]; then
-            echo "⏳ Less than 30 hours. Skipping run."
-            exit 0
-          fi
-        else
-          echo "🔔 First run or no timestamp found."
-        fi
-
-        echo $NOW > $FILE
-
-    - name: Run Docker job
+    - name: Echo NewsAPI key (sanity check)
       run: |
-        docker build -t stock-sentiment-tracker .
+        echo "NewsAPI Key is ${{ secrets.NEWS_API }}"
+
+
+    - name: Build Docker image
+      run: docker build -t stock-sentiment-tracker .
+
+    - name: Run Docker container
+      run: |
         docker run \
           -e GOOGLE_APPLICATION_CREDENTIALS='/app/gcp_key.json' \
           -e NEWS_API="${{ secrets.NEWS_API }}" \
           stock-sentiment-tracker
 
-    - name: Commit updated timestamp
-      run: |
-        git config user.name github-actions
-        git config user.email github-actions@github.com
-        git add last_run.txt
-        git commit -m "Update last run timestamp"
-        git push
