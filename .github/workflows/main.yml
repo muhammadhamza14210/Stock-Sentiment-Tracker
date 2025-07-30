@@ -34,6 +34,7 @@ jobs:
       run: |
         docker run \
           -e GOOGLE_APPLICATION_CREDENTIALS='/app/gcp_key.json' \
-          -e NEWS_API ="${{ secrets.NEWS_API }}" \
+          -e NEWS_API="${{ secrets.NEWS_API }}" \
           stock-sentiment-tracker
+
 
