@@ -17,5 +17,4 @@ SECTOR_MAP = {
     "PLTR": "Tech", "SNOW": "Tech", "DDOG": "Tech", "NET": "Tech",
     "TWLO": "Tech", "ZS": "Tech", "CRWD": "Tech", "OKTA": "Tech", "PANW": "Tech",
     "ASML": "Semiconductors", "TSM": "Semiconductors", "NXPI": "Semiconductors", "ROST": "Retail", "DG": "Retail",
-    "STLA": "Auto",  "ROKU": "Media", "SPOT": "Media", "SQ": "Fintech", "HOOD": "Fintech",
-}
+    "STLA": "Auto",  "ROKU": "Media", "SPOT": "Media"
