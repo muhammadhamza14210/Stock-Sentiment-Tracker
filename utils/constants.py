@@ -11,13 +11,11 @@ SECTOR_MAP = {
     "XOM": "Energy", "CVX": "Energy", "COP": "Energy", "BP": "Energy", "SLB": "Energy", "HAL": "Energy",
     "NKE": "Apparel", "LULU": "Apparel", "UAA": "Apparel", "RL": "Apparel",
     "BA": "Aerospace", "LMT": "Aerospace", "RTX": "Aerospace", "GD": "Aerospace",
-     "CSCO": "Networking", "IBM": "Tech", "UBER": "Transport", "LYFT": "Transport", "DASH": "Transport",
-     "T": "Telecom", "VZ": "Telecom", "TMUS": "Telecom",
-    "Z": "Real Estate", "OPEN": "Real Estate", "RDFN": "Real Estate",
+    "CSCO": "Networking", "IBM": "Tech", "UBER": "Transport", "LYFT": "Transport", "DASH": "Transport",
+    "T": "Telecom", "VZ": "Telecom", "TMUS": "Telecom",
+    "Z": "Real Estate", "OPEN": "Real Estate",
     "PLTR": "Tech", "SNOW": "Tech", "DDOG": "Tech", "NET": "Tech",
     "TWLO": "Tech", "ZS": "Tech", "CRWD": "Tech", "OKTA": "Tech", "PANW": "Tech",
     "ASML": "Semiconductors", "TSM": "Semiconductors", "NXPI": "Semiconductors", "ROST": "Retail", "DG": "Retail",
     "STLA": "Auto",  "ROKU": "Media", "SPOT": "Media", "SQ": "Fintech", "HOOD": "Fintech",
 }
-
-print(len(SECTOR_MAP))
